@@ -1,0 +1,15 @@
+[Unit]
+Description=CJAPay Production Stack
+After=docker.service
+Requires=docker.service
+
+[Service]
+WorkingDirectory=/home/deploy/cjapay
+ExecStart=/usr/bin/docker compose -f docker-compose.prod.yml up -d
+ExecStop=/usr/bin/docker compose -f docker-compose.prod.yml down
+Restart=always
+TimeoutStartSec=0
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
